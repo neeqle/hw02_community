@@ -9,13 +9,13 @@ class PostAdmin(admin.ModelAdmin):
         'pub_date',
         'author',
         'group'
-    ) 
+    )
     # возможность изменять group в любом посте
     list_editable = ('group',)
     # интерфейс для поиска по тексту постов
-    search_fields = ('text',) 
+    search_fields = ('text',)
     # возможность фильтрации по дате
-    list_filter = ('pub_date',) 
+    list_filter = ('pub_date',)
     empty_value_display = '-пусто-'
 
 # При регистрации модели Post источником конфигурации для неё назначаем
