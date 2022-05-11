@@ -4,9 +4,9 @@ from .models import Post, Group
 class PostAdmin(admin.ModelAdmin):
     # поля, которые должны отображаться в админке
     list_display = (
-        'pk', 
-        'text', 
-        'pub_date', 
+        'pk',
+        'text',
+        'pub_date',
         'author',
         'group'
     ) 
