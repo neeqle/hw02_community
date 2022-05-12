@@ -1,9 +1,9 @@
-from turtle import title
+
 from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
-
 POSTS_COUNT = 10
+
 
 def index(request):
     posts = Post.objects.all()[:POSTS_COUNT]
