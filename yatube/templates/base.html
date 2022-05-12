@@ -15,19 +15,19 @@
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    <title>Последние обновления на сайте</title>      
+    <title>
+      {% block title %}
+        Последние обновления на сайте
+      {% endblock %}
+      </title>      
   </head>
   <body>       
-    <header>
-      {% include 'includes/header.html' %}
-    </header>
+    {% include 'includes/header.html' %}
     <main>
       {% block content %}
         Контент ушёл, но обещал вернуться!
       {% endblock %}
     </main>
-    <footer>
-      {% include 'includes/footer.html' %} 
-    </footer>
+    {% include 'includes/footer.html' %} 
   </body>
 </html> 

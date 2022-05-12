@@ -14,7 +14,7 @@
     <meta name="msapplication-TileColor" content="#000">
     <meta name="theme-color" content="#ffffff">
     <!-- Подключен файл со стандартными стилями бустрап -->
-    <title>Последние обновления на сайте</title>
+    <title>{{ title }}</title>
   </head>
   <body>
     <header>
@@ -41,6 +41,7 @@
               <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a>
             {% endif %} 
             {% if forloop.last != True %}
+              <hr>
             {% endif %}
           </article>
         {% endfor %}
@@ -51,7 +52,5 @@
     <!-- border-top: создаёт тонкую линию сверху блока -->
     <!-- text-center: выравнивает текстовые блоки внутри блока по центру -->
     <!-- py-3: контент внутри размещается с отступом сверху и снизу -->         
-    <footer class="border-top text-center py-3">
-      {% include 'includes/footer.html'%}
-    </footer>
+    {% include 'includes/footer.html'%}
   </body>
