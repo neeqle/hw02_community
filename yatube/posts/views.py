@@ -7,10 +7,9 @@ POSTS_COUNT = 10
 
 def index(request):
     posts = Post.objects.all()[:POSTS_COUNT]
-    title = 'Последние обновления на сайте'
     context = {
         'posts': posts,
-        'title': title,
+        'title': 'Последние обновления на сайте',
     }
     return render(request, 'posts/index.html', context)
 
@@ -19,10 +18,9 @@ def group_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()[:POSTS_COUNT]
-    title = 'Записи группы'
     context = {
         'group': group,
         'posts': posts,
-        'title': title,
+        'title': 'Записи группы',
     }
     return render(request, template, context)
