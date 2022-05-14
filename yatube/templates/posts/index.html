@@ -1,10 +1,13 @@
-<!DOCTYPE html> <!-- Используется html 5 версии -->
+<!DOCTYPE html>
 {% extends 'base.html' %}
 {% load static %}
-  <body>
-    <main> 
-    {% block content %}
-      <!-- класс py-5 создает отступы сверху и снизу блока -->
+{% block title %}
+  <title>
+    Последние обновления
+  </title>
+{% endblock %} 
+  {% block content %}
+    <main>
       <div class="container py-5">     
         {% for post in posts %}
           <ul>
@@ -22,6 +25,5 @@
           {% if not forloop.last %}<hr>{% endif %}
         {% endfor %} 
       </div>  
-    {% endblock %}
-    </main>      
-  </body>
+    </main> 
+   {% endblock %}

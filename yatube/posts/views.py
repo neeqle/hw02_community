@@ -9,7 +9,6 @@ def index(request):
     posts = Post.objects.all()[:POSTS_COUNT]
     context = {
         'posts': posts,
-        'title': 'Последние обновления на сайте',
     }
     return render(request, 'posts/index.html', context)
 
@@ -21,6 +20,5 @@ def group_posts(request, slug):
     context = {
         'group': group,
         'posts': posts,
-        'title': 'Записи группы',
     }
     return render(request, template, context)
