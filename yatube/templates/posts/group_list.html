@@ -1,41 +1,33 @@
 {% extends 'base.html' %}
 {% load static %} 
 <!DOCTYPE html> <!-- Используется html 5 версии --> 
-  <head>
-    {% block title %}
-      <title>
-        Записи группы
-      </title>
-    {% endblock %} 
-  </head>
-  <body>    
-    {% include 'includes/header.html' %}
-    {% block content %}
-      <main>  
-        <div class="container py-5">  
-          {% for post in posts %} 
-            <article> 
-              <ul> 
-                <li> 
-                  Автор: {{ post.author.get_full_name }} 
-                </li> 
-                <li> 
-                  Дата публикации: {{ post.pub_date|date:"d M Y" }} 
-                </li> 
-              </ul>  
-              <p> 
-                {{ post.text }} 
-              </p> 
-              {% if post.group %}    
-                <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a> 
-              {% endif %}  
-              {% if forloop.last != True %} 
-                <hr> 
-              {% endif %} 
-            </article> 
-          {% endfor %}
-        </div>  
-      </main> 
-    {% endblock %}
-    {% include 'includes/footer.html' %} 
-  </body>
+{% block title %}
+  Записи группы
+{% endblock %} 
+{% include 'includes/header.html' %}
+{% block content %} 
+  <div class="container py-5">  
+    {% for post in posts %} 
+       <article> 
+        <ul> 
+          <li> 
+            Автор: {{ post.author.get_full_name }} 
+          </li> 
+          <li> 
+            Дата публикации: {{ post.pub_date|date:"d M Y" }} 
+          </li> 
+        </ul>  
+        <p> 
+          {{ post.text }} 
+        </p> 
+        {% if post.group %}    
+          <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a> 
+        {% endif %}  
+        {% if forloop.last != True %} 
+          <hr> 
+        {% endif %} 
+      </article> 
+    {% endfor %}
+  </div>  
+{% endblock %}
+{% include 'includes/footer.html' %}

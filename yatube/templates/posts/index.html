@@ -2,12 +2,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}
-  <title>
     Последние обновления
-  </title>
 {% endblock %} 
   {% block content %}
-    <main>
       <div class="container py-5">     
         {% for post in posts %}
           <ul>
@@ -25,5 +22,4 @@
           {% if not forloop.last %}<hr>{% endif %}
         {% endfor %} 
       </div>  
-    </main> 
    {% endblock %}
