@@ -3,8 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 from datetime import datetime
 
-# POSTS_COUNT = 10
-
 
 def index(request):
     post_list = Post.objects.all().order_by('-pub_date')
@@ -22,7 +20,7 @@ def index(request):
 def group_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
-    # posts = group.posts.all()[:POSTS_COUNT]
+    posts = group.posts.all()
     paginator = Paginator(posts, 10)
     context = {
         'group': group,
