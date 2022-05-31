@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post, Group
+from .forms import PostForm
 from datetime import datetime
 
 
@@ -18,7 +19,6 @@ def index(request):
 
 
 def group_posts(request, slug):
-    template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
     posts = group.posts.all()
     paginator = Paginator(posts, 10)
@@ -26,7 +26,7 @@ def group_posts(request, slug):
         'group': group,
         'posts': posts,
     }
-    return render(request, template, context)
+    return render(request, 'posts/group_list.html', context)
 
 
 def profile(request, username):
@@ -48,3 +48,17 @@ def post_detail(request, post_id):
         'posts': posts,
     }
     return render(request, 'posts/post_detail.html', context)
+
+def post_create(request):
+    form = PostForm(request.POST or None)
+    context = {
+        'form': form,
+    }
+    if request.user.is_authenticated:
+        if form.is_valid():
+            form.instance.author = request.user
+            form.save()
+            return redirect('posts:profile', request.user)
+        return render(request, 'posts/create_post.html', context)
+    else:
+        return redirect('users:login')
