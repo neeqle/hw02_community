@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}
-    Создание записи
-{% endblock %}
+{% if form.instance.id %}
+ Редактировать запись 
+ {% else %}
+ Добавить Запись
+{% endif %}
+ {% endblock %}
 {% block content %}
 {% load user_filters %}
+<main>
   <div class="container py-5">
     <div class="row justify-content-center">
       <div class="col-md-8 p-5">
         <div class="card">
-          <div class="card-header">       
-            Новый пост             
+          <div class="card-header">  
+            {% if form.instance.id %}
+            Редактировать пост
+            {% else %}
+            Новый пост
+            {% endif %}             
           </div>
           {% if form.errors %}
           {% for field in form %} 
@@ -26,7 +35,11 @@
           {% endfor %}
           {% endif %}
             <div class="card-body">        
-              <form method="post" >
+              <form method="post" action="{% if form.instance.id %}
+              {% url 'posts:post_edit' post_id %}
+              {% else %}
+              {% url 'posts:post_create' %} 
+              {% endif %}">
               {% csrf_token %}
               {% for field in form %} 
               <div class="form-group row my-3">
@@ -45,7 +58,7 @@
               </div>
               {% endfor %}
             <button type="submit" class="btn btn-primary">
-              {% if edit %}
+              {% if form.instance.id %}
                 Сохранить
               {% else %}
                 Добавить
@@ -56,4 +69,5 @@
       </div>
     </div>
   </div>
+</main>
 {% endblock %}

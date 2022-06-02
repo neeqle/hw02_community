@@ -62,3 +62,15 @@ def post_create(request):
         return render(request, 'posts/create_post.html', context)
     else:
         return redirect('users:login')
+
+def post_edit(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    form = PostForm(request.POST or None, instance=post)
+    if form.is_valid():
+        form.save()
+        return redirect('posts:post_detail', post.id)
+    context = {
+        'post': post,
+        'form': form
+    }
+    return render(request, 'posts/create_post.html', context)

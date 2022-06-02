@@ -22,7 +22,7 @@
       <a href="{% url 'posts:post_detail' post.pk %}">подробная информация </a>
     </article>       
     {% if post.group %}    
-    <a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a> 
+    <p><a href="{% url 'posts:group_list' post.group.slug %}">все записи группы</a></p>
     {% endif %}         
     <hr>
     {% endfor %}
